@@ -1,0 +1,24 @@
+<script type="text/javascript" src="{$wa_app_static_url}plugins/imageupload/js/ImageUpload.js?{$wa->version()}"></script>
+{$placeholder = 'добавить описание'}
+<script>
+    $(function() {
+        $.imageupload.init({
+            placeholder: '{$placeholder}'
+        });
+    });
+</script>
+<style>
+    #image-url{
+        min-width: 200px;
+        width: 40%;
+    }
+    #image-upload-loading{
+        display: none;
+    }
+</style>
+<div class="block double-padded s-image-upload-dropbox">
+    <i class="icon16 upload"></i>Укажите ссылку на изображение
+    <input type="text" name="image_url" id="image-url">
+    <a id="image-upload-but" href="#">Загрузить</a><span id="image-upload-loading"><i class="icon16 loading"></i>Загрузка...</span>
+    <div id="image-upload-response"></div>
+</div>
