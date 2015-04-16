@@ -29,7 +29,7 @@ class shopImageuploadPluginBackendImageUploadController extends waJsonController
                 throw new waException("Неподдерживаемый файловый протокол " . $u['scheme']);
             }
 
-            $name = preg_replace('@[^a-z0-9\._\-]+@', '', basename($image_url));
+            $name = strtolower(basename($image_url));
 
             waFiles::upload($image_url, $file = wa()->getCachePath('plugins/imageupload/' . waLocale::transliterate($name, 'en_US')));
 
