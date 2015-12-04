@@ -8,17 +8,18 @@
     });
 </script>
 <style>
-    #image-url{
+    .image-url{
         min-width: 200px;
         width: 40%;
     }
-    #image-upload-loading{
+    .image-upload-loading{
         display: none;
     }
 </style>
-<div class="block double-padded s-image-upload-dropbox">
+<div class="image-upload-container block double-padded s-image-upload-dropbox">
     <i class="icon16 upload"></i>Укажите ссылку на изображение
-    <input type="text" name="image_url" id="image-url">
-    <a id="image-upload-but" href="#">Загрузить</a><span id="image-upload-loading"><i class="icon16 loading"></i>Загрузка...</span>
-    <div id="image-upload-response"></div>
+    <input type="text" name="image_url" data-product-id="{$product.id}" class="image-url">
+    <a class="image-upload-but" href="#">Загрузить</a>
+    <span class="image-upload-loading"><i class="icon16 loading"></i>Загрузка...</span>
+    <div class="image-upload-response"></div>
 </div>

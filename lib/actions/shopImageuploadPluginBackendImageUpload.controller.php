@@ -10,8 +10,8 @@ class shopImageuploadPluginBackendImageUploadController extends waJsonController
         try {
             $config = $this->getConfig();
             $model = new shopProductImagesModel();
-            $product = waRequest::post('product', array());
-            if (!isset($product['id'])) {
+            $product_id = waRequest::post('product_id');
+            if (empty($product_id)) {
                 throw new waException("Не определен идентификатор товара");
             }
             $image_url = waRequest::post('image_url');
@@ -32,23 +32,24 @@ class shopImageuploadPluginBackendImageUploadController extends waJsonController
 
             $name = preg_replace('@[^a-zA-Zа-яА-Я0-9\._\-]+@', '', basename(urldecode($image_url)));
             $ext = pathinfo(urldecode($name), PATHINFO_EXTENSION);
-            $name = str_replace('.'.$ext, '.'.strtolower($ext), $name);
+            $name = str_replace('.' . $ext, '.' . strtolower($ext), $name);
             if (empty($ext) || !in_array(strtolower($ext), array('jpeg', 'jpg', 'png', 'gif'))) {
                 $name .= '.jpeg';
             }
-            
+
             waFiles::upload($image_url, $file = wa()->getCachePath('plugins/imageupload/' . waLocale::transliterate($name, 'en_US')));
 
 
             if ($file && file_exists($file)) {
                 if ($image = waImage::factory($file)) {
                     $data = array(
-                        'product_id' => $product['id'],
+                        'product_id' => $product_id,
                         'upload_datetime' => date('Y-m-d H:i:s'),
                         'width' => $image->width,
                         'height' => $image->height,
                         'size' => filesize($file),
                         'original_filename' => $name,
+                        'filename' => $name,
                         'ext' => pathinfo($file, PATHINFO_EXTENSION),
                     );
 
