@@ -8,7 +8,7 @@ return array(
     'name' => 'Загрузка изображений',
     'description' => 'Загрузка изображений по url',
     'vendor' => '985310',
-    'version' => '1.1.0',
+    'version' => '1.1.1',
     'img' => 'img/imageupload.png',
     'shop_settings' => false,
     'frontend' => false,
