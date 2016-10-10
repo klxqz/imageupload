@@ -113,7 +113,7 @@ class shopImageuploadPluginBackendImageUploadController extends waJsonController
                 // save original
                 $original_file = shopImage::getOriginalPath($data);
                 if ($config->getOption('image_save_original') && $original_file) {
-                    $file->moveTo($original_file);
+                    waFiles::copy($file_path, $original_file);
                 }
             } else {
                 waFiles::copy($file_path, $image_path);
